@@ -1,0 +1,49 @@
+---
+interface Props {
+  active?: boolean;
+}
+
+const { active } = Astro.props;
+---
+
+<li class="nav-item flex-fill d-flex justify-content-center">
+  <a
+    class:list={[
+      { active },
+      "nav-link d-inline-flex flex-column align-items-center text-decoration-none",
+    ]}
+    aria-current="page"
+    href="#"
+  >
+    <slot />
+  </a>
+</li>
+
+<style>
+  .nav-link {
+    --bs-navbar-nav-link-padding-x: 1.5rem;
+    --bs-navbar-nav-link-padding-y: 0.5rem;
+    --bs-nav-link-font-weight: 500;
+    --bs-navbar-active-color: var(--bs-link-hover-color);
+
+    padding-top: var(--bs-navbar-nav-link-padding-y);
+    padding-bottom: var(--bs-navbar-nav-link-padding-y);
+    border-radius: var(--bs-border-radius-xl);
+    color: var(--bs-secondary-color);
+    font-weight: var(--bs-nav-link-font-weight);
+    min-width: 7rem;
+  }
+
+  .nav-link:hover {
+    color: var(--bs-link-hover-color);
+  }
+
+  .nav-link:active,
+  .nav-link.active:active {
+    background-color: var(--bs-primary-bg-subtle);
+  }
+
+  .nav-link.active {
+    background-color: var(--bs-primary-bg-subtle);
+  }
+</style>

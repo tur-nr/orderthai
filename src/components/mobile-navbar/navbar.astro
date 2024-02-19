@@ -1,0 +1,21 @@
+---
+
+---
+
+<div class="fixed-bottom d-sm-none bg-body shadow-lg border-top">
+  <div class="container-fluid">
+    <nav class="nav nav-pills align-items-center py-3 gap-4">
+      <slot />
+    </nav>
+  </div>
+</div>
+
+<style>
+  .nav-pills {
+    --bs-nav-pills-link-active-bg: var(--bs-primary-bg-subtle);
+    --bs-nav-pills-link-active-color: var(--bs-link-hover-color);
+    --bs-nav-pills-border-radius: var(--bs-border-radius-pill);
+    --bs-nav-link-color: var(--bs-secondary-color);
+    --bs-nav-link-font-weight: 500;
+  }
+</style>
