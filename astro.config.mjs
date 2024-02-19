@@ -11,10 +11,7 @@ export default defineConfig({
           updateConfig({
             vite: {
               plugins: [
-                pluginPurgeCss({
-                  keyframes: true,
-                  variables: true
-                })
+                pluginPurgeCss()
               ]
             }
           });
