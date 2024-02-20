@@ -1,0 +1,22 @@
+---
+import stylesUrl from "../scss/main.scss?url";
+import ThemeScript from "../components/theme-script.astro";
+import Icons from "../components/icons.astro";
+---
+
+<html lang="en">
+  <head>
+    <link rel="preload" href={stylesUrl} as="style" />
+    <link rel="stylesheet" href={stylesUrl} />
+    <ThemeScript />
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Sawadee Kha &mdash; Order Thai</title>
+  </head>
+  <body>
+    <slot />
+    <Icons />
+  </body>
+</html>

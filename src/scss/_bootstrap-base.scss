@@ -1,0 +1,38 @@
+@use "sass:map";
+@import "../../node_modules/bootstrap/scss/functions";
+
+$red: #ff382e;
+$orange: #ff9500;
+$yellow: #ffcc00;
+$green: #34c759;
+$teal: #30afc5;
+$cyan: #33ade6;
+$blue: #007bff;
+$indigo: #5957d6;
+$purple: #b054de;
+$pink: #ff2e54;
+
+@import "../../node_modules/bootstrap/scss/variables";
+@import "../../node_modules/bootstrap/scss/variables-dark";
+
+@import "../../node_modules/bootstrap/scss/maps";
+@import "../../node_modules/bootstrap/scss/mixins";
+@import "../../node_modules/bootstrap/scss/utilities";
+
+$utilities: map-merge(
+                $utilities,
+                (
+                        "position": map-merge(
+                                        map-get($utilities, "position"),
+                                        (responsive: true)
+                        ),
+                        "border": map-merge(
+                                        map-get($utilities, "border"),
+                                        (responsive: true)
+                        ),
+                        "shadow": map-merge(
+                                        map-get($utilities, "shadow"),
+                                        (responsive: true)
+                        ),
+                )
+);

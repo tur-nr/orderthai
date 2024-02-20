@@ -1,0 +1,28 @@
+---
+interface Props {
+  symbol: string;
+  width?: string;
+  height?: string;
+  fill?: string;
+  class?: string;
+}
+
+const {
+  symbol,
+  class: classname,
+  width = "1em",
+  height = "1em",
+  fill = "currentColor",
+} = Astro.props;
+---
+
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  width={width}
+  height={height}
+  fill={fill}
+  class={classname}
+>
+  <use xlink:href={`#icon:${symbol}`}></use>
+</svg>

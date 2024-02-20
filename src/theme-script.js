@@ -7,7 +7,6 @@
 
   const storeKey = "theme";
   const getStoredTheme = () => localStorage.getItem(storeKey);
-  // window.setStoredTheme = (theme) => localStorage.setItem(storeKey, theme);
 
   const getPreferredTheme = () => {
     const storedTheme = getStoredTheme();
@@ -36,6 +35,7 @@
     }
   });
 
+  // @dev uncomment when view transitions is enabled
   // document.addEventListener("astro:before-swap", (ev) => {
   //   setTheme(getPreferredTheme(), ev.newDocument);
   // });

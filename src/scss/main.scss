@@ -1,3 +1,9 @@
-@import "./reset";
-@import "./root";
-@import "./global";
+@use 'sass:map';
+
+@import "./bootstrap-base";
+@import "./bootstrap-components";
+
+body {
+  max-width: map.get($container-max-widths, 'md');
+  margin: 0 auto;
+}

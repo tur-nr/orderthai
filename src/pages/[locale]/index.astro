@@ -1,7 +1,8 @@
 ---
 import type { GetStaticPaths } from "astro";
 import { locales } from "../../i18n/config";
-import AppLayout from "../../layouts/app.astro";
+import Layout from "../_layout.astro";
+import Navbar from "../../components/navbar.astro";
 
 export const getStaticPaths = (() => {
   return locales.map((locale) => ({
@@ -12,14 +13,6 @@ export const getStaticPaths = (() => {
 }) satisfies GetStaticPaths;
 ---
 
-<AppLayout>
-  <div>
-    <h1>Order Thai</h1>
-  </div>
-</AppLayout>
-
-<style lang="scss">
-  div {
-    padding: 0 1rem;
-  }
-</style>
+<Layout>
+  <Navbar />
+</Layout>
