@@ -7,6 +7,7 @@ body {
   color: var(--text-color-body);
   background: var(--body-bg-color);
 
+  min-height: revert;
   max-width: 720px;
   margin: 0 auto;
   font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
