@@ -1,0 +1,41 @@
+---
+
+---
+
+<nav>
+  <slot />
+</nav>
+
+<style lang="scss">
+  @import "../scss/variables";
+
+  nav {
+    --navbar-border-color: #{$color-gray-200};
+
+    border-top: 1px solid var(--navbar-border-color);
+
+    position: fixed;
+    display: flex;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    padding: 0.5rem 1rem;
+  }
+
+  @media (min-width: 576px) {
+    nav {
+      position: unset;
+      border-top: unset;
+
+      justify-content: space-evenly;
+      padding: 0.5rem 0.75rem;
+    }
+  }
+
+  @media (prefers-color-scheme: dark) {
+    nav {
+      --navbar-border-color: #{$color-gray-800};
+    }
+  }
+</style>
