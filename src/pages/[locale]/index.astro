@@ -3,6 +3,7 @@ import type { GetStaticPaths } from "astro";
 import { locales } from "../../i18n/config";
 import Layout from "../_layout.astro";
 import Navbar from "../../components/navbar.astro";
+import PageHeading from "../../components/page-heading.astro";
 
 export const getStaticPaths = (() => {
   return locales.map((locale) => ({
@@ -15,4 +16,5 @@ export const getStaticPaths = (() => {
 
 <Layout>
   <Navbar />
+  <PageHeading id="lets-eat" />
 </Layout>

@@ -1,8 +1,8 @@
 ---
 import Icon from "./icon.astro";
-import { useTranslations } from "../i18n/utils";
+import { useLang } from "../i18n/utils";
 
-const t = useTranslations(Astro.currentLocale);
+const t = useLang(Astro.currentLocale);
 ---
 
 <div

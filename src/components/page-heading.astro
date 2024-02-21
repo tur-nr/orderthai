@@ -1,0 +1,25 @@
+---
+import { getEntry } from "astro:content";
+import { useTranslation } from "../i18n/utils";
+import Icon from "./icon.astro";
+interface Props {
+  id: string;
+}
+
+const { id } = Astro.props;
+
+const tran = await getEntry("translation", `page-heading/${id}`);
+const t = useTranslation(tran, Astro.currentLocale);
+---
+
+<hgroup class="container-fluid my-3">
+  <h1 class="h2 fw-bolder text-body-emphasis">{t.title}</h1>
+  <p class="leading mb-0 text-body-secondary">
+    <span>{t.thai}</span>
+    <span>&bull;</span>
+    <span>{t.transliteration}</span>
+    <a href="#">
+      <Icon symbol="translate" />
+    </a>
+  </p>
+</hgroup>
