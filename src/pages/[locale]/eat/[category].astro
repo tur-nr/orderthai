@@ -1,8 +1,7 @@
 ---
 import type { GetStaticPaths } from "astro";
-import { CollectionEntry, getCollection } from "astro:content";
+import { type CollectionEntry, getCollection } from "astro:content";
 import { getEntry } from "astro:content";
-import { useTranslation } from "../../../i18n/utils";
 import { locales } from "../../../i18n/config";
 import Layout from "../../_layout.astro";
 import DishList from "../../../components/dish-list.astro";
@@ -32,7 +31,6 @@ interface Props {
 
 const { category } = Astro.props;
 const trans = await getEntry(category.data.translation);
-const t = useTranslation(trans, Astro.currentLocale);
 ---
 
 <Layout>
