@@ -1,14 +1,14 @@
 export default {
-  "navbar.nav-link.eat": {
+  ["Eat"]: {
     en: "Eat",
   },
-  "navbar.nav-link.phrases": {
+  ["Phrases"]: {
     en: "Phrases",
   },
-  "navbar.nav-link.saved": {
+  ["Saved"]: {
     en: "Saved",
   },
-  "navbar.nav-link.more": {
+  ["More"]: {
     en: "More",
   },
 } as const;
