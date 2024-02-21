@@ -1,0 +1,23 @@
+---
+import { getRelativeLocaleUrl } from "astro:i18n";
+import { defaultLocale } from "../../../i18n/config";
+import Layout from "../../_layout.astro";
+import CategoryList from "../../../components/category-list.astro";
+import Navbar from "../../../components/navbar.astro";
+import PageHeading from "../../../components/page-heading.astro";
+
+const linkHref = getRelativeLocaleUrl(
+  Astro.currentLocale ?? defaultLocale,
+  "eat/",
+);
+---
+
+<Layout>
+  <Fragment slot="head">
+    <link href={linkHref} rel="canonical" />
+  </Fragment>
+
+  <Navbar />
+  <PageHeading id="lets-eat" />
+  <CategoryList />
+</Layout>

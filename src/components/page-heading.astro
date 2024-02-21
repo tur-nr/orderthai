@@ -9,7 +9,7 @@ interface Props {
 const { id } = Astro.props;
 
 const tran = await getEntry("translation", `page-heading/${id}`);
-const t = useTranslation(tran, Astro.currentLocale);
+const t = useTranslation(tran!, Astro.currentLocale);
 ---
 
 <hgroup class="container-fluid my-3">

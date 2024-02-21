@@ -1,4 +1,4 @@
-import { defineCollection, z } from "astro:content";
+import { defineCollection, reference, z } from "astro:content";
 import { locales } from "../i18n/config.ts";
 
 const translation = defineCollection({
@@ -22,6 +22,16 @@ const translation = defineCollection({
   }),
 });
 
+const category = defineCollection({
+  type: "data",
+  schema: ({ image }) =>
+    z.object({
+      translation: reference("translation"),
+      cover: image(),
+    }),
+});
+
 export const collections = {
   translation,
+  category,
 };

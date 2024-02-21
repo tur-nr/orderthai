@@ -3,6 +3,11 @@
 @import "./bootstrap-base";
 @import "./bootstrap-components";
 
+html {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+}
+
 body {
   max-width: map.get($container-max-widths, 'md');
   margin: 0 auto;

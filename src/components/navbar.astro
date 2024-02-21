@@ -1,18 +1,20 @@
 ---
 import Icon from "./icon.astro";
 import { useLang } from "../i18n/utils";
+import { getRelativeLocaleUrl } from "astro:i18n";
+import { defaultLocale } from "../i18n/config";
 
 const t = useLang(Astro.currentLocale);
 ---
 
 <div
-  class="container-fluid fixed-bottom position-sm-static border-top border-sm-0 shadow shadow-sm-none"
+  class="container-fluid fixed-bottom position-sm-static border-top border-sm-0 shadow shadow-sm-none bg-body"
 >
   <nav class="nav nav-pills py-3 py-sm-2">
     <a
       class="nav-link active d-inline-flex flex-sm-column align-items-sm-center"
       aria-current="page"
-      href="#"
+      href={getRelativeLocaleUrl(Astro.currentLocale ?? defaultLocale, "eat/")}
     >
       <Icon symbol="restaurant-menu" width="24" height="24" class="mb-sm-1" />
       <span class="mx-1">{t("Eat")}</span>
@@ -53,8 +55,8 @@ const t = useLang(Astro.currentLocale);
   .nav-pills {
     --bs-nav-pills-border-radius: var(--bs-border-radius-pill);
     --bs-nav-pills-link-active-color: var(--bs-primary-text-emphasis);
-    --bs-nav-pills-link-active-bg: #{tint-color($primary-bg-subtle, 60)};
-    --bs-nav-pills-link-hover-bg: #{tint-color($primary-bg-subtle, 60)};
+    --bs-nav-pills-link-active-bg: #{tint-color($primary-bg-subtle, 60%)};
+    --bs-nav-pills-link-hover-bg: var(--bs-nav-pills-link-active-bg);
   }
 
   .nav-link {
@@ -66,7 +68,7 @@ const t = useLang(Astro.currentLocale);
     }
 
     &:active {
-      background-color: #{tint-color($primary-bg-subtle, 40)};
+      background-color: #{tint-color($primary-bg-subtle, 40%)};
       color: var(--bs-nav-pills-link-active-color);
     }
   }
@@ -96,7 +98,7 @@ const t = useLang(Astro.currentLocale);
       --bs-nav-link-hover-color: var(--bs-nav-link-color);
 
       &:active {
-        background-color: #{tint-color($body-tertiary-bg-dark, 5)};
+        background-color: #{tint-color($body-tertiary-bg-dark, 5%)};
         color: var(--bs-secondary-color);
       }
     }

@@ -1,7 +1,7 @@
 ---
 import type { GetStaticPaths } from "astro";
-import { locales } from "../../i18n/config";
-import Eat from "./eat/_eat.astro";
+import { locales } from "../../../i18n/config";
+import Eat from "./_eat.astro";
 
 export const getStaticPaths = (() => {
   return locales.map((locale) => ({

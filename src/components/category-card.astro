@@ -1,0 +1,73 @@
+---
+import { type CollectionEntry, getEntry } from "astro:content";
+import { Image } from "astro:assets";
+import { useTranslation } from "../i18n/utils";
+
+interface Props {
+  category: CollectionEntry<"category">;
+}
+
+const { category } = Astro.props;
+const trans = await getEntry(category.data.translation);
+const t = useTranslation(trans, Astro.currentLocale);
+---
+
+<div class="card border-0">
+  <div class="ratio ratio-1x1">
+    <Image
+      src={category.data.cover}
+      alt={t.title}
+      densities={[1, 2, 3]}
+      width="190"
+    />
+  </div>
+  <div class="card-body px-0">
+    <h5 class="h6 card-title text-center text-body-emphasis">
+      <a
+        href="#"
+        title={t.title}
+        class="stretched-link text-decoration-none link-body-emphasis"
+      >
+        {t.title}
+      </a>
+    </h5>
+    <h6 class="card-subtitle text-body-tertiary text-center lh-sm">
+      <span>{t.thai}</span>
+      <span>&bull;</span>
+      <span>{t.transliteration}</span>
+    </h6>
+  </div>
+</div>
+
+<style lang="scss">
+  @import "../scss/bootstrap-base";
+
+  img {
+    border-radius: calc(#{$border-radius-xxl} - 0.25rem);
+  }
+
+  .stretched-link:after {
+    --category-card-box-shadow-color: var(--bs-light);
+    border-radius: var(--bs-border-radius-xxl);
+    box-shadow: 0 0 0 #{map-get($border-widths, 4)} var(--category-card-box-shadow-color);
+  }
+
+  .stretched-link:hover:after {
+    --category-card-box-shadow-color: var(--bs-primary-border-subtle);
+  }
+
+  .stretched-link:active:after {
+    --category-card-box-shadow-color: var(--bs-link-hover-color);
+  }
+
+  @include local-color-mode(dark) {
+    .card {
+      --bs-card-bg: var(--bs-tertiary-bg);
+      --bs-card-border-radius: var(--bs-border-radius-xxl);
+    }
+
+    .stretched-link:not(:active):not(:hover):after {
+      --category-card-box-shadow-color: var(--bs-tertiary-bg);
+    }
+  }
+</style>
