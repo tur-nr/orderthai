@@ -1,3 +1,4 @@
+---
 translation: category/fruit
 cover: ../../assets/content/category/fruit.jpg
-
+---

@@ -1,0 +1,42 @@
+---
+import type { GetStaticPaths } from "astro";
+import { CollectionEntry, getCollection } from "astro:content";
+import { getEntry } from "astro:content";
+import { useTranslation } from "../../../i18n/utils";
+import { locales } from "../../../i18n/config";
+import Layout from "../../_layout.astro";
+import DishList from "../../../components/dish-list.astro";
+import PageHeading from "../../../components/page-heading.astro";
+import Navbar from "../../../components/navbar.astro";
+
+export const getStaticPaths = (() =>
+  getCollection("category").then((collection) =>
+    collection
+      .map((entry) =>
+        locales.map((locale) => ({
+          params: {
+            locale,
+            category: entry.slug,
+          },
+          props: {
+            category: entry,
+          },
+        })),
+      )
+      .flat(),
+  )) satisfies GetStaticPaths;
+
+interface Props {
+  category: CollectionEntry<"category">;
+}
+
+const { category } = Astro.props;
+const trans = await getEntry(category.data.translation);
+const t = useTranslation(trans, Astro.currentLocale);
+---
+
+<Layout>
+  <Navbar />
+  <PageHeading id={trans.id} />
+  <DishList category={category} />
+</Layout>

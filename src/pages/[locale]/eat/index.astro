@@ -3,13 +3,12 @@ import type { GetStaticPaths } from "astro";
 import { locales } from "../../../i18n/config";
 import Eat from "./_eat.astro";
 
-export const getStaticPaths = (() => {
-  return locales.map((locale) => ({
+export const getStaticPaths = (() =>
+  locales.map((locale) => ({
     params: {
       locale,
     },
-  }));
-}) satisfies GetStaticPaths;
+  }))) satisfies GetStaticPaths;
 ---
 
 <Eat />

@@ -1,3 +1,4 @@
+---
 translation: category/soup
 cover: ../../assets/content/category/soup.jpg
-
+---

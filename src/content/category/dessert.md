@@ -1,2 +1,4 @@
+---
 translation: category/dessert
 cover: ../../assets/content/category/dessert.jpg
+---

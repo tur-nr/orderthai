@@ -7,9 +7,9 @@ import { defaultLocale } from "../i18n/config";
 
 <html lang={Astro.currentLocale ?? defaultLocale}>
   <head>
+    <ThemeScript />
     <link rel="preload" href={stylesUrl} as="style" />
     <link rel="stylesheet" href={stylesUrl} />
-    <ThemeScript />
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width" />

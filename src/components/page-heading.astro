@@ -8,7 +8,7 @@ interface Props {
 
 const { id } = Astro.props;
 
-const tran = await getEntry("translation", `page-heading/${id}`);
+const tran = await getEntry("translation", id);
 const t = useTranslation(tran!, Astro.currentLocale);
 ---
 

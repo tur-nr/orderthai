@@ -91,7 +91,7 @@ const t = useLang(Astro.currentLocale);
   @include local-color-mode(dark) {
     .nav-pills {
       --bs-nav-pills-link-active-bg: var(--bs-tertiary-bg);
-      --bs-nav-pills-link-hover-bg: var(--bs-nav-pills-link-active-bg);
+      --bs-nav-pills-link-hover-bg: var(--bs-tertiary-bg);
     }
 
     .nav-link {
@@ -99,7 +99,10 @@ const t = useLang(Astro.currentLocale);
 
       &:active {
         background-color: #{tint-color($body-tertiary-bg-dark, 5%)};
-        color: var(--bs-secondary-color);
+
+        &:not(.active) {
+          color: var(--bs-secondary-color);
+        }
       }
     }
   }

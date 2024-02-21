@@ -1,0 +1,110 @@
+---
+import { type CollectionEntry, getEntry } from "astro:content";
+import { Image } from "astro:assets";
+import { defaultLocale } from "../i18n/config";
+import { useTranslation } from "../i18n/utils";
+import SpiceRating from "./spice-rating.astro";
+
+interface Props {
+  dish: CollectionEntry<"dish">;
+}
+
+const { currentLocale = defaultLocale } = Astro;
+const { dish } = Astro.props;
+
+console.log(dish.data.spice);
+
+const trans = await getEntry(dish.data.translation);
+const t = useTranslation(trans, currentLocale);
+---
+
+<div class="card border-0 mb-4 mb-sm-0">
+  <div class="hstack p-1 pb-0" style="column-gap: 1px;">
+    {
+      dish.data.covers.map((src, i) => (
+        <div class="ratio ratio-1x1">
+          <Image
+            src={src}
+            alt={`${t.title} cover image ${i + 1}`}
+            densities={[1, 2, 3]}
+            width="140"
+            height="140"
+          />
+        </div>
+      ))
+    }
+  </div>
+  <div class="card-body">
+    <h5 class="card-title fw-bold">
+      <a href="#" class="stretched-link link-body-emphasis text-decoration-none"
+        >{t.title}</a
+      >
+    </h5>
+    <h6 class="card-subtitle fw-normal mb-2">
+      <span>{t.thai}</span>
+      <span>&bull;</span>
+      <span class="text-nowrap">{t.transliteration}</span>
+      <a class="position-relative" style="z-index: 10;">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          fill="currentColor"
+          viewBox="0 0 16 16"
+        >
+          <path
+            d="M4.545 6.714 4.11 8H3l1.862-5h1.284L8 8H6.833l-.435-1.286zm1.634-.736L5.5 3.956h-.049l-.679 2.022z"
+          ></path>
+          <path
+            d="M0 2a2 2 0 0 1 2-2h7a2 2 0 0 1 2 2v3h3a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-3H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h7a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zm7.138 9.995q.289.451.63.846c-.748.575-1.673 1.001-2.768 1.292.178.217.451.635.555.867 1.125-.359 2.08-.844 2.886-1.494.777.665 1.739 1.165 2.93 1.472.133-.254.414-.673.629-.89-1.125-.253-2.057-.694-2.82-1.284.681-.747 1.222-1.651 1.621-2.757H14V8h-3v1.047h.765c-.318.844-.74 1.546-1.272 2.13a6 6 0 0 1-.415-.492 2 2 0 0 1-.94.31"
+          ></path>
+        </svg>
+      </a>
+    </h6>
+    <SpiceRating rating={dish.data.spice} class="mb-3" />
+    <p class="card-text">{dish.data.description}</p>
+  </div>
+</div>
+
+<style lang="scss">
+  @import "../scss/bootstrap-base";
+
+  .card {
+    --bs-card-inner-border-radius: calc(var(--bs-border-radius-xxl) - 0.25rem);
+  }
+
+  .card .ratio:first-of-type img {
+    border-top-left-radius: var(--bs-card-inner-border-radius);
+    border-bottom-left-radius: var(--bs-card-inner-border-radius);
+  }
+
+  .card .ratio:last-of-type img {
+    border-top-right-radius: var(--bs-card-inner-border-radius);
+    border-bottom-right-radius: var(--bs-card-inner-border-radius);
+  }
+
+  .stretched-link:after {
+    --dish-card-box-shadow-color: var(--bs-light);
+    border-radius: var(--bs-border-radius-xxl);
+    box-shadow: 0 0 0 #{map-get($border-widths, 4)} var(--dish-card-box-shadow-color);
+  }
+
+  .stretched-link:hover:after {
+    --dish-card-box-shadow-color: var(--bs-primary-border-subtle);
+  }
+
+  .stretched-link:active:after {
+    --dish-card-box-shadow-color: var(--bs-link-hover-color);
+  }
+
+  @include local-color-mode(dark) {
+    .card {
+      --bs-card-bg: var(--bs-tertiary-bg);
+      border-radius: var(--bs-border-radius-xxl) !important;
+    }
+
+    .stretched-link:not(:active):not(:hover):after {
+      --dish-card-box-shadow-color: var(--bs-tertiary-bg);
+    }
+  }
+</style>

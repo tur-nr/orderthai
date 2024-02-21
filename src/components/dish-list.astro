@@ -1,0 +1,32 @@
+---
+import { type CollectionEntry, getCollection } from "astro:content";
+import { defaultLocale } from "../i18n/config";
+import DishCard from "./dish-card.astro";
+import { arrayChunk } from "../utils";
+interface Props {
+  category: CollectionEntry<"category">;
+}
+
+const { currentLocale = defaultLocale } = Astro;
+const { category } = Astro.props;
+
+const dishSlugPrefix = [currentLocale, category.slug, ""].join("/");
+
+const dishes = await getCollection("dish", (entry) =>
+  entry.slug.startsWith(dishSlugPrefix),
+);
+
+const chunkedDishes = arrayChunk(dishes, 2);
+---
+
+<div class="container-fluid">
+  {
+    chunkedDishes.map((dishes) => (
+      <div class="card-group gap-3 mb-3">
+        {dishes.map((dish) => (
+          <DishCard dish={dish} />
+        ))}
+      </div>
+    ))
+  }
+</div>

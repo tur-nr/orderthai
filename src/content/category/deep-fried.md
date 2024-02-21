@@ -1,2 +1,4 @@
+---
 translation: category/deep-fried
 cover: ../../assets/content/category/deep-fried.jpg
+---

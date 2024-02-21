@@ -1,3 +1,4 @@
+---
 translation: category/salad
 cover: ../../assets/content/category/salad.jpg
-
+---

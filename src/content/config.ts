@@ -23,7 +23,7 @@ const translation = defineCollection({
 });
 
 const category = defineCollection({
-  type: "data",
+  type: "content",
   schema: ({ image }) =>
     z.object({
       translation: reference("translation"),
@@ -31,7 +31,21 @@ const category = defineCollection({
     }),
 });
 
+const dish = defineCollection({
+  type: "content",
+  schema: ({ image }) =>
+    z.object({
+      translation: reference("translation"),
+      category: reference("category"),
+      spice: z.number().max(5).min(0),
+      description: z.string(),
+      covers: z.array(image()).nullable(),
+      ingredients: z.array(z.string()).nullable(),
+    }),
+});
+
 export const collections = {
   translation,
   category,
+  dish,
 };
