@@ -36,3 +36,23 @@ $utilities: map-merge(
                         ),
                 )
 );
+
+@mixin local-color-mode($mode: light, $root: false) {
+  @if $color-mode-type == "media-query" {
+    @if $root == true {
+      @media (prefers-color-scheme: $mode) {
+        :root {
+          @content;
+        }
+      }
+    } @else {
+      @media (prefers-color-scheme: $mode) {
+        @content;
+      }
+    }
+  } @else {
+    :global([data-bs-theme="#{$mode}"]) {
+      @content;
+    }
+  }
+}
